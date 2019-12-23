@@ -9,13 +9,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthCurrent = healthMax;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ResetHealth();
     }
 
     public void TakeDamage(float damageToTake)
@@ -36,5 +30,16 @@ public class Health : MonoBehaviour
     {
         Debug.Log("DEAD");
         Destroy(gameObject);
+    }
+
+    public void SetMaxHP(float max)
+    {
+        healthMax = max;
+        ResetHealth();
+    }
+
+    private void ResetHealth()
+    {
+        healthCurrent = healthMax;
     }
 }
