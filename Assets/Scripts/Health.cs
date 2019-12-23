@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damageToTake)
     {
         healthCurrent -= damageToTake;
+        CheckHealth();
     }
 
     public void CheckHealth()

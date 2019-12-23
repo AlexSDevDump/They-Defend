@@ -367,8 +367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3784caa22bcea4cbff1d524b84a473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rateOfFire: 0
+  rateOfFire: 1
   gunCooldown: 0
+  damage: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +550,7 @@ GameObject:
   - component: {fileID: 935970831}
   - component: {fileID: 935970835}
   - component: {fileID: 935970836}
+  - component: {fileID: 935970837}
   m_Layer: 8
   m_Name: Capsule
   m_TagString: Enemy
@@ -660,6 +662,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+--- !u!114 &935970837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935970830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08774ead428d35b419cca283022aff64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 1
+  healthCurrent: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
