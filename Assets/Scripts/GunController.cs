@@ -17,8 +17,10 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private float damage;
 
-    [SerializeField]
     Animator anim;
+
+    [SerializeField]
+    private GameObject gunEffect;
 
 
     // Start is called before the first frame update
@@ -59,11 +61,13 @@ public class GunController : MonoBehaviour
             {
                 Transform objectHit = hit.transform;
 
+                Instantiate(gunEffect, hit.point, Quaternion.identity);
+
                 Health h = objectHit.GetComponent<Health>();
 
                 if(h != null)
                 {
-                    h.TakeDamage(damage);
+                    h.TakeDamage(damage);     
                 }
             }
             else { Debug.Log("MISS"); }

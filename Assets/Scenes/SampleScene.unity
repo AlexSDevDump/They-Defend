@@ -822,7 +822,8 @@ MonoBehaviour:
   rateOfFire: 0.8
   gunCooldown: 0
   damage: 1
-  anim: {fileID: 0}
+  gunEffect: {fileID: 3765130289239733005, guid: 25ce5326da916de419b29d50777ac973,
+    type: 3}
 --- !u!1 &935970830
 GameObject:
   m_ObjectHideFlags: 0
