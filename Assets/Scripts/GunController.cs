@@ -17,10 +17,14 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private float damage;
 
+    [SerializeField]
+    Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         crosshairPosition = GetComponent<RectTransform>();
         cam = Camera.main;
         Cursor.lockState = CursorLockMode.Confined;
@@ -42,9 +46,12 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
+        //Firing Logic
         int layerMask = LayerMask.GetMask("Enemies");
         if (gunCooldown <= 0.0f)
         {
+            //Animation
+            anim.SetBool("GunFiring", true);
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
