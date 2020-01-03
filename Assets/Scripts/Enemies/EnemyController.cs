@@ -17,6 +17,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         MoveForward();
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log(gameObject.layer);
+        }
     }
 
     void MoveForward()

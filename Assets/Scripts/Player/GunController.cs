@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(RayAttack))]
+
 public class GunController : MonoBehaviour
 {
     private RectTransform crosshairPosition;
     private Camera cam;
+
+    [SerializeField]
+    private LayerMask targetLayer;
 
     [SerializeField]
     private float rateOfFire;
@@ -18,6 +23,7 @@ public class GunController : MonoBehaviour
     private float damage;
 
     Animator anim;
+    RayAttack rayAtt;
 
     [SerializeField]
     private GameObject gunEffect;
@@ -27,6 +33,7 @@ public class GunController : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        rayAtt = GetComponent<RayAttack>();
         crosshairPosition = GetComponent<RectTransform>();
         cam = Camera.main;
         Cursor.lockState = CursorLockMode.Confined;
@@ -49,29 +56,11 @@ public class GunController : MonoBehaviour
     void Shoot()
     {
         //Firing Logic
-        int layerMask = LayerMask.GetMask("Enemies");
         if (gunCooldown <= 0.0f)
         {
             //Animation
             anim.SetBool("GunFiring", true);
-            RaycastHit hit;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, 1000f, layerMask))
-            {
-                Transform objectHit = hit.transform;
-
-                Instantiate(gunEffect, hit.point, Quaternion.identity);
-
-                Health h = objectHit.GetComponent<Health>();
-
-                if(h != null)
-                {
-                    h.TakeDamage(damage);     
-                }
-            }
-            else { Debug.Log("MISS"); }
-
+            rayAtt.Attack(cam.ScreenPointToRay(Input.mousePosition), damage, 75f, targetLayer);
             gunCooldown = rateOfFire;
         }
     }
