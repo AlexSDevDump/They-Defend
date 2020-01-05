@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestB
   m_EditorClassIdentifier: 
   maxHealth: 10
-  speed: 0
+  speed: 1
