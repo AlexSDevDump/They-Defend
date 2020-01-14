@@ -14,11 +14,12 @@ public class RayAttack : MonoBehaviour
         {
             Transform objectHit = hit.transform;
 
-            Health h = objectHit.GetComponent<Health>();
+            Health h = objectHit.transform.parent.GetComponentInChildren<Health>();
+            Debug.Log(h.gameObject);
 
             if (h != null)
             {
-                h.TakeDamage(damage);
+                h.UpdateHealth(damage);
             }
         }
         else { Debug.Log("MISS"); }

@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-
-    [SerializeField]
-    private LayerMask targetLayer;
-
+    public LayerMask targetLayer;
+    private EnemySO SO;
+    public float rateOfFire;
+    public float range;
+    public float damage;
     RayAttack rayAtt;
 
     // Start is called before the first frame update
@@ -18,15 +19,25 @@ public class EnemyAttack : MonoBehaviour
         rayAtt = GetComponent<RayAttack>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetSO(EnemySO _so)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1)) { Attack(); }
+        SO = _so;
+        rateOfFire = SO.rateOfFire;
+        range = SO.range;
+        damage = SO.damage;
     }
+
+    public void StartAttack()
+    {
+        InvokeRepeating("Attack", 0f, rateOfFire);
+    }
+
+    public void StopAttack() => CancelInvoke();
 
     void Attack()
     {
         Ray r = new Ray(transform.position, transform.right);
-        rayAtt.Attack(r, 10f, 10f, targetLayer);
+        rayAtt.Attack(r, damage, range, targetLayer);
+        Debug.DrawRay(transform.position, transform.right * 10f, Color.red, 0.1f);
     }
 }

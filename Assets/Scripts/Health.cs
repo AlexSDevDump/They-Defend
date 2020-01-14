@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float healthMax, healthCurrent;
+    public HealthBar hpBar;
 
     // Start is called before the first frame update
     void Start()
@@ -12,10 +13,10 @@ public class Health : MonoBehaviour
         ResetHealth();
     }
 
-    public void TakeDamage(float damageToTake)
+    public void UpdateHealth(float valueUpdate)
     {
-        Debug.Log(gameObject + " hit for " + damageToTake + " damage");
-        healthCurrent -= damageToTake;
+        healthCurrent -= valueUpdate;
+        UpdateHealthBar();
         CheckHealth();
     }
 
@@ -29,7 +30,6 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("DEAD");
         Destroy(gameObject);
     }
 
@@ -42,5 +42,15 @@ public class Health : MonoBehaviour
     private void ResetHealth()
     {
         healthCurrent = healthMax;
+        UpdateHealthBar();
+
+    }
+
+    private void UpdateHealthBar()
+    {
+        if(hpBar != null)
+        {
+            hpBar.SetHealthBarPercent(healthCurrent, healthMax);
+        }
     }
 }
