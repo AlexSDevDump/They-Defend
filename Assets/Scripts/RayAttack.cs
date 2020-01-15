@@ -14,8 +14,7 @@ public class RayAttack : MonoBehaviour
         {
             Transform objectHit = hit.transform;
 
-            Health h = objectHit.transform.parent.GetComponentInChildren<Health>();
-            Debug.Log(h.gameObject);
+            Health h = objectHit.transform.root.GetComponentInChildren<Health>();
 
             if (h != null)
             {

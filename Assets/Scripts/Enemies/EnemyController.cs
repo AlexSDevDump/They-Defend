@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public GameObject modelGO;
     public EnemySO SO;
     public Health hp;
     public EnemyAttack attack;
@@ -22,6 +23,8 @@ public class EnemyController : MonoBehaviour
         hp.SetMaxHP(SO.maxHealth);
         attack = GetComponent<EnemyAttack>();
         attack.SetSO(SO);
+        modelGO = Instantiate(SO.enemyPrefab, transform, true);
+        modelGO.transform.localPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -47,7 +50,6 @@ public class EnemyController : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    Debug.Log(hit.collider.gameObject + " spotted!");
                     isAttack = true;
                     attack.StartAttack();
                 }
@@ -58,7 +60,6 @@ public class EnemyController : MonoBehaviour
         {
             if (!Physics.Raycast(transform.position, forwardSensor, out hit, SO.range, attack.targetLayer))
             {
-                Debug.Log("Nothing spotted!");
                 isAttack = false;
                 attack.StopAttack();
             }

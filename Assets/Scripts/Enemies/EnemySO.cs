@@ -8,4 +8,5 @@ public class EnemySO : ScriptableObject
     public float rateOfFire = 1;
     public float range = 10;
     public float damage = 1;
+    public GameObject enemyPrefab;
 }
