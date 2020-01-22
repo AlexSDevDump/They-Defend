@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TestB
   m_EditorClassIdentifier: 
   maxHealth: 10
-  speed: 1
-  rateOfFire: 1
+  speed: 3
+  rateOfFire: 1.4
   range: 10
-  damage: 1
-  enemyPrefab: {fileID: 7756413683407763364, guid: 3c5b1fc255b24ab44b34b165aa8af3d9,
+  damage: 2
+  enemyPrefab: {fileID: 1231678107606296082, guid: 875f7db42c2ac8a429f033abe90af7eb,
     type: 3}
